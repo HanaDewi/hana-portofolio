@@ -1,16 +1,38 @@
-# React + Vite
+# Hana's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Selamat datang di repository portfolio pribadi saya. Website ini dibangun untuk menampilkan proyek pengembangan web, desain UI/UX, dan keahlian teknis saya sebagai lulusan baru IT yang saat ini berkarir sebagai Pranata Komputer/Pengolah Data dan Informasi di KemenPANRB.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Frontend & Backend:**
+* **Framework:** React.js + Vite
+* **Styling:** Tailwind CSS
+* **Database:** Supabase (untuk manajemen project, skill, dan pesan masuk)
+* **Icons:** Lucide React
+* **UI Components:** Shadcn/ui (dengan sistem notifikasi Toast)
 
-## React Compiler
+**Design & Others:**
+* **UI/UX Design:** Figma
+* **Graphic Design:** Adobe Illustrator & Canva
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Fitur Utama
 
-## Expanding the ESLint configuration
+1. **Dynamic Projects Section:** Menampilkan project unggulan (Featured) dan project lainnya yang datanya diambil secara real-time dari Supabase.
+2. **Interactive Contact Form:** Form kontak yang terintegrasi dengan database Supabase, lengkap dengan notifikasi popup (Toast) saat pesan berhasil dikirim.
+3. **Responsive Design:** Website yang nyaman diakses dari perangkat mobile maupun desktop.
+4. **Interactive UI:** Efek hover "mantul" (lift effect) dan zoom pada kartu project untuk pengalaman pengguna yang lebih baik.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Struktur Project
+
+* `src/components`: Komponen UI modular (Hero, About, Projects, dll).
+* `src/pages`: Halaman utama seperti Home, Other Projects, dan Project Detail.
+* `src/lib`: Konfigurasi Supabase dan utilitas CSS.
+* `src/hooks`: Custom hooks untuk fungsionalitas aplikasi.
+
+## Instalasi Lokal
+
+Jika Anda ingin menjalankan project ini di komputer lokal:
+
+1. Clone repository:
+   ```bash
+   git clone [https://github.com/HanaDewi/hana-portofolio.git](https://github.com/HanaDewi/hana-portofolio.git)
