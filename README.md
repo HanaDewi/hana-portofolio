@@ -1,38 +1,55 @@
-# Hana's Portfolio
+# Hana Dewi - Multidisciplinary Tech Portfolio
 
-Selamat datang di repository portfolio pribadi saya. Website ini dibangun untuk menampilkan proyek pengembangan web, desain UI/UX, dan keahlian teknis saya sebagai lulusan baru IT yang saat ini berkarir sebagai Pranata Komputer/Pengolah Data dan Informasi di KemenPANRB.
+Welcome to the source code of my personal portfolio website. This repository hosts the dynamic React application that serves as the central hub for showcasing my diverse professional journey, technical projects, and creative designs. 
 
-## Tech Stack
+Currently, I serve as a **Pranata Komputer / Information & Data Processor at KemenPANRB**, where I leverage technology, data management, and design to optimize public sector services and information systems.
 
-**Frontend & Backend:**
-* **Framework:** React.js + Vite
-* **Styling:** Tailwind CSS
-* **Database:** Supabase (untuk manajemen project, skill, dan pesan masuk)
-* **Icons:** Lucide React
-* **UI Components:** Shadcn/ui (dengan sistem notifikasi Toast)
+## 🌟 Core Competencies & Featured Work
 
-**Design & Others:**
-* **UI/UX Design:** Figma
-* **Graphic Design:** Adobe Illustrator & Canva
+My portfolio spans multiple disciplines, reflecting my ability to build end-to-end solutions from data modeling to user interfaces and branding.
 
-## Fitur Utama
+### 1. AI & Machine Learning Engineering
+* **PneumoAI:** An early pneumonia detection web platform utilizing an XGBoost machine learning model, integrated via a FastAPI backend and a React frontend.
+* **CoffeeScape:** A tailored web application featuring a core recommendation engine built with Scikit-Learn to map complex user flavor preferences to specific coffee products.
+* **Data Mining:** Developed Python-based web scraping and sentiment analysis tools to extract and analyze news trends regarding various government ministries.
 
-1. **Dynamic Projects Section:** Menampilkan project unggulan (Featured) dan project lainnya yang datanya diambil secara real-time dari Supabase.
-2. **Interactive Contact Form:** Form kontak yang terintegrasi dengan database Supabase, lengkap dengan notifikasi popup (Toast) saat pesan berhasil dikirim.
-3. **Responsive Design:** Website yang nyaman diakses dari perangkat mobile maupun desktop.
-4. **Interactive UI:** Efek hover "mantul" (lift effect) dan zoom pada kartu project untuk pengalaman pengguna yang lebih baik.
+### 2. Full-Stack Web Development
+* **PortalRB:** Involved in the UI design and implementation for government platforms, utilizing advanced data management logic.
+* **Lestari:** A sustainability web application built with Tailwind CSS and PHP, designed to bridge communities with waste bank owners for efficient recycling exchange.
 
-## Struktur Project
+### 3. UI/UX Design (Figma)
+* **REVERSE:** Led the end-to-end UI/UX design process for a smart motorbike maintenance and rental platform, focusing on seamless user flows and high-fidelity prototyping to support fast-paced lifestyles.
+* **System Flow & Use Cases:** Proficient in designing clear BPMN, user personas, and system architecture diagrams for complex application blueprints.
 
-* `src/components`: Komponen UI modular (Hero, About, Projects, dll).
-* `src/pages`: Halaman utama seperti Home, Other Projects, dan Project Detail.
-* `src/lib`: Konfigurasi Supabase dan utilitas CSS.
-* `src/hooks`: Custom hooks untuk fungsionalitas aplikasi.
+### 4. Graphic Design & Commercial Assets
+* **Canva Contributor:** Designed and published premium, commercially viable presentation templates (10+ slides per deck) and digital posters adhering to strict global design guidelines.
+* **Social Media & Branding:** Crafted seamless puzzle-grid Instagram feeds and promotional materials using Adobe Illustrator for various organizational campaigns and client commissions.
 
-## Instalasi Lokal
+---
 
-Jika Anda ingin menjalankan project ini di komputer lokal:
+## 💻 Tech Stack & Tools
 
-1. Clone repository:
+**Development & Data:**
+* **Frontend:** React.js, Vite, Tailwind CSS, Svelte
+* **Backend & APIs:** FastAPI, Laravel, PHP, Python
+* **Database & BaaS:** Supabase
+* **AI/ML:** Scikit-Learn, XGBoost, Pandas
+* **Data Management:** Advanced Google Sheets (INDIRECT, MAP, LAMBDA)
+
+**Design & Prototyping:**
+* **UI/UX:** Figma (Wireframing, Prototyping, Design Systems)
+* **Graphic Design:** Adobe Illustrator, Canva
+
+---
+
+## ⚙️ About This Website (Repository Details)
+
+This portfolio website is built to be fast, dynamic, and fully responsive. It fetches project details, skills, and manages contact form submissions in real-time using **Supabase**.
+
+### Local Installation
+
+To run this portfolio project on your local machine:
+
+1. Clone the repository:
    ```bash
    git clone [https://github.com/HanaDewi/hana-portofolio.git](https://github.com/HanaDewi/hana-portofolio.git)
