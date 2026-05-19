@@ -41,15 +41,21 @@ export const Navbar = () => {
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-6 min-h-[40px]">
           {navItems.map((item, key) => (
-            <HashLink key={key} smooth to={item.href} className="text-foreground/80 hover:text-primary transition-colors duration-300" onClick={() => setIsMenuOpen(false)}>
+            <HashLink 
+              key={key} 
+              smooth 
+              to={item.href} 
+              className="text-foreground/80 hover:text-primary transition-colors duration-300 py-2" 
+              onClick={() => setIsMenuOpen(false)}
+            >
               {item.name}
             </HashLink>
           ))}
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
-
+  
         {/* mobile nav */}
         <div
           className={cn(

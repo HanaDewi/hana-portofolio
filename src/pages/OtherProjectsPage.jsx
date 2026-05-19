@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase"; 
-import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ExternalLink, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar"; 
 import { Footer } from "@/components/Footer"; 
 
 const OtherProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,15 +33,32 @@ const OtherProjectsPage = () => {
     fetchAllProjects();
   }, []);
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-xl text-primary font-bold animate-pulse">Loading projects...</div>
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="w-12 h-12 animate-spin text-primary" />
+        <p className="text-lg font-medium text-foreground/80 animate-pulse">
+          Loading projects...
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <Navbar /> 
+
+      <button
+        onClick={() => navigate(-1)}
+        className="fixed bottom-8 left-8 md:bottom-12 md:left-12 z-50 w-14 h-14 bg-[#1e293b] text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-slate-800 hover:-translate-x-1 transition-all duration-300 cursor-pointer border border-white/10"
+        aria-label="Kembali ke halaman sebelumnya"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="M19 12H5"/>
+        </svg>
+      </button>
+
       <section className="pt-32 pb-4 px-4 relative">
         <div className="container mx-auto max-w-6xl">
           
@@ -59,7 +77,6 @@ const OtherProjectsPage = () => {
                 className="group bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 card-hover"
               >
                 <div className="h-48 overflow-hidden relative">
-                  {/* MODIFIKASI: Menambahkan object-top di sini */}
                   <img 
                     src={project.image_url} 
                     alt={project.title} 
@@ -104,11 +121,7 @@ const OtherProjectsPage = () => {
               <p className="text-muted-foreground">No extra projects found in database.</p>
             </div>
           )}
-          <div className="text-center mt-16">
-              <Link to="/#projects" className="cosmic-button w-fit flex items-center mx-auto gap-2">← Back to Home
-            </Link>
-          </div>
-
+          
         </div>
       </section>
 
