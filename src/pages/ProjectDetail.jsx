@@ -84,7 +84,6 @@ export const ProjectDetail = () => {
       {/* My Role & Development Process Section */}
       <section className="py-12 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8 bg-secondary/30 relative">
         <div className="container mx-auto max-w-5xl">
-          
           {/* Bagian My Role */}
           {project.role_description && (
             <div className="mb-12 sm:mb-16">
@@ -100,55 +99,64 @@ export const ProjectDetail = () => {
               </div>
             </div>
           )}
-          
+
           {/* --- DEVELOPMENT PROCESS SECTION --- */}
-          {(Array.isArray(project.bpmn_gallery) && project.bpmn_gallery.length > 0 || Array.isArray(project.uiux_gallery) && project.uiux_gallery.length > 0 || Array.isArray(project.gallery) && project.gallery.length > 0) && (
+          {((Array.isArray(project.bpmn_gallery) && project.bpmn_gallery.length > 0) || (Array.isArray(project.uiux_gallery) && project.uiux_gallery.length > 0) || (Array.isArray(project.gallery) && project.gallery.length > 0)) && (
             <div className="w-full pt-16 mt-8 border-t border-primary/10">
               <h3 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-12">Development Process</h3>
 
-              {/* BPMN */}
+              {/* FASE 1: BPMN / BUSINESS PROCESS / USER PERSONA */}
               {Array.isArray(project.bpmn_gallery) && project.bpmn_gallery.length > 0 && (
                 <div className="mb-16">
                   <div className="flex items-center gap-4 mb-6 text-left">
                     <div className="p-3 bg-primary/10 rounded-lg text-primary flex-shrink-0"><Workflow size={24} /></div>
                     <div>
-                      <h4 className="text-xl font-bold text-primary">Business Process & Flow</h4>
-                      {/* <p className="text-sm text-muted-foreground mt-1">Merancang alur logika dan proses bisnis (BPMN).</p> */}
+                      <h4 className="text-xl font-bold text-primary">{project.bpmn_title || "Business Process & Flow"}</h4>
+                      {/* <p className="text-sm text-muted-foreground mt-1">{project.bpmn_subtitle || "Merancang alur logika dan skenario pengguna."}</p> */}
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible">
-                    {project.bpmn_gallery.map((imgUrl, idx) => (
-                      <a 
-                        key={`bpmn-${idx}`} 
-                        href={project.bpmn_link || "#"} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="group relative bg-white rounded-xl shadow-md border border-primary/10 aspect-video flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer overflow-hidden"
-                      >
-                        <img src={imgUrl} alt={`BPMN ${idx + 1}`} className="w-full h-full object-cover object-top" />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-                          <ExternalLink size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      </a>
-                    ))}
+                    {project.bpmn_gallery.map((imgUrl, idx) => {
+                      let itemLink = "#";
+                      if (Array.isArray(project.bpmn_link) && project.bpmn_link[idx]) {
+                        itemLink = project.bpmn_link[idx];
+                      } else if (typeof project.bpmn_link === 'string' && project.bpmn_link) {
+                        itemLink = project.bpmn_link;
+                      }
+
+                      return (
+                        <a 
+                          key={`bpmn-${idx}`} 
+                          href={itemLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="group relative bg-white rounded-xl shadow-md border border-primary/10 aspect-video flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer overflow-hidden"
+                        >
+                          <img src={imgUrl} alt={`${project.bpmn_title || "BPMN"} ${idx + 1}`} className="w-full h-full object-cover object-top" />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                            <ExternalLink size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </div>
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
-              {/* FASE: UI/UX Design */}
+              {/* FASE 2: UI/UX DESIGN / LOW-FI & HIGH-FI */}
               {Array.isArray(project.uiux_gallery) && project.uiux_gallery.length > 0 && (
                 <div className="mb-16">
                   <div className="flex items-center gap-4 mb-6 text-left">
                     <div className="p-3 bg-primary/10 rounded-lg text-primary flex-shrink-0"><PenTool size={24} /></div>
                     <div>
-                      <h4 className="text-xl font-bold text-primary">UI/UX Design</h4>
-                      {/* <p className="text-sm text-muted-foreground mt-1">Menerjemahkan alur menjadi antarmuka (Figma).</p> */}
+                      <h4 className="text-xl font-bold text-primary">{project.uiux_title || "UI/UX Design"}</h4>
+                      {/* <p className="text-sm text-muted-foreground mt-1">{project.uiux_subtitle || "Menerjemahkan konsep menjadi antarmuka visual (Figma)."}</p> */}
                     </div>
                   </div>
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-visible">
                     {project.uiux_gallery.map((imgUrl, idx) => {
-                      // Jika ada uiux_gallery_link di Supabase, render sebagai link h-ref eksternal
                       if (project.uiux_gallery_link) {
                         return (
                           <a 
@@ -158,20 +166,21 @@ export const ProjectDetail = () => {
                             rel="noopener noreferrer"
                             className="group relative bg-white rounded-xl shadow-md border border-primary/10 aspect-video flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer overflow-hidden"
                           >
-                            <img src={imgUrl} alt={`UIUX ${idx + 1}`} className="w-full h-full object-cover object-top" />
+                            <img src={imgUrl} alt={`${project.uiux_title || "UIUX"} ${idx + 1}`} className="w-full h-full object-cover object-top" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                               <ExternalLink size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
                           </a>
                         );
                       }
-                        return (
+
+                      return (
                         <div 
                           key={`uiux-${idx}`} 
                           className="group relative bg-white rounded-xl shadow-md border border-primary/10 aspect-video flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer overflow-hidden" 
                           onClick={() => document.getElementById(`modal-uiux-${idx}`).showModal()}
                         >
-                          <img src={imgUrl} alt={`UIUX ${idx + 1}`} className="w-full h-full object-cover object-top" />
+                          <img src={imgUrl} alt={`${project.uiux_title || "UIUX"} ${idx + 1}`} className="w-full h-full object-cover object-top" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                             <ExternalLink size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
@@ -188,7 +197,7 @@ export const ProjectDetail = () => {
                 </div>
               )}
 
-              {/* FASE: Final Implementation */}
+              {/* FASE 3: FINAL IMPLEMENTATION */}
               {Array.isArray(project.gallery) && project.gallery.length > 0 && (
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6 text-left">
