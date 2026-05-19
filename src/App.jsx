@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
+import NotFound from "./pages/NotFound";
 import Cv from "./pages/Cv";
 import { ProjectDetail } from "./pages/ProjectDetail"; 
 import OtherProjectsPage from "./pages/OtherProjectsPage";
@@ -19,8 +19,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-
-      {/* TARUH DI SINI */}
       <Toaster /> 
     </>
   );

@@ -33,18 +33,16 @@ export const ContactSection = () => {
       ]);
 
     if (error) {
-      // Popup Error yang seragam
       toast({
         variant: "destructive",
         title: "Duh, Gagal Kirim!",
         description: "Sepertinya ada masalah teknis. Coba lagi nanti ya.",
       });
     } else {
-      // Popup Berhasil dengan style "Success"
       toast({
         title: "Pesan Terkirim! 🚀",
         description: "Terima kasih sudah mampir. Hana bakal balas secepatnya!",
-        className: "bg-primary text-primary-foreground border-none", // Biar warnanya nyatu sama tema web
+        className: "bg-primary text-primary-foreground border-none", 
       });
       setFormData({ name: "", email: "", message: "" });
     }
@@ -64,7 +62,7 @@ export const ContactSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Sisi Kiri: Contact Information */}
+          {/* Contact Information */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
 
@@ -123,7 +121,7 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* Sisi Kanan: Form Kirim Pesan */}
+          {/* Form Kirim Pesan */}
           <div className="bg-card p-8 rounded-lg shadow-sm border border-border/50">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 

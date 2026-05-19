@@ -14,7 +14,7 @@ export const AboutSection = () => {
           <div className="space-y-6 flex flex-col items-center text-center">
             {/* Foto Profil */}
             <img
-              src="/projects/profile.jpg" // ganti dengan path foto kamu
+              src="/projects/profile.jpg" 
               alt="Hana Dewi"
               className="w-40 h-40 rounded-full object-cover border-4 border-primary shadow-lg"
             />
@@ -37,41 +37,40 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg"> UI/UX Design </h4>
-                  <p className="text-muted-foreground">Crafting user-friendly interfaces and delivering smooth, engaging user journeys.</p>
-                </div>
+          <div className="gradient-border p-6 card-hover">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10">
+                <User className="h-6 w-6 text-primary" />
               </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Web Development</h4>
-                  <p className="text-muted-foreground">Building responsive websites and dynamic web apps using the latest technologies.</p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
-
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
-                  <p className="text-muted-foreground">Overseeing projects from start to finish with effective planning and agile practices.</p>
-                </div>
+              <div className="text-left">
+                <h4 className="font-semibold text-lg">Web Development</h4>
+                <p className="text-muted-foreground">Building responsive websites and dynamic web apps using the latest technologies.</p>
               </div>
             </div>
           </div>
+          <div className="gradient-border p-6 card-hover">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Briefcase className="h-6 w-6 text-primary" />
+              </div>
+              <div className="text-left">
+                <h4 className="font-semibold text-lg">Project Management</h4>
+                <p className="text-muted-foreground">Overseeing projects from start to finish with effective planning and agile practices.</p>
+              </div>
+            </div>
+          </div>
+          <div className="gradient-border p-6 card-hover">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Code className="h-6 w-6 text-primary" />
+              </div>
+              <div className="text-left">
+                <h4 className="font-semibold text-lg">UI/UX Design</h4>
+                <p className="text-muted-foreground">Crafting user-friendly interfaces and delivering smooth, engaging user journeys.</p>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </section>

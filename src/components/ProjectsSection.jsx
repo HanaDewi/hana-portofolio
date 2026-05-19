@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react"; // Tambahkan ini
+import { useEffect, useState } from "react"; 
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from '../lib/supabase';
 
 export const ProjectsSection = () => {
-  // 1. Siapkan state untuk menampung data dari Supabase
   const [projectList, setProjectList] = useState([]);
-
-  // 2. Fungsi untuk mengambil data
   useEffect(() => {
     const fetchProjects = async () => {
       const { data, error } = await supabase
         .from('projects') 
-        .select('*').eq('is_featured', true);
+        .select('*')
+        .eq('is_featured', true)
+        .eq('is_visible', true)
+        .order('id', { ascending: true });
       
       if (error) {
         console.error("Gagal ambil data:", error);
@@ -38,19 +38,17 @@ export const ProjectsSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* 3. Gunakan projectList hasil fetch dari database */}
           {projectList.map((project, key) => (
             <div key={key} className="group bg-card rounded-lg overflow-hidden shadow-lg card-hover">
-              <Link to={`/projects/${project.id}`} className="block h-48 overflow-hidden">
+              <Link to={`/projects/${project.slug}`} className="block aspect-video overflow-hidden">
                 <img 
-                  src={project.image_url} // Pastikan namanya image_url sesuai kolom Supabase
+                  src={project.image_url} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" 
                 />
               </Link>
 
               <div className="p-6">
-                {/* Bagian tags ini opsional, kalau di Supabase belum ada kolom tags bisa dikomentari dulu */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags && project.tags.split(',').map((tag, idx) => (
                     <span 
@@ -62,7 +60,7 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <Link to={`/projects/${project.id}`}>
+                <Link to={`/projects/${project.slug}`}>
                   <h3 className="text-xl font-semibold mb-1 hover:text-primary transition-colors">
                     {project.title}
                   </h3>
@@ -71,7 +69,7 @@ export const ProjectsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
                 <div className="flex justify-start items-center">
                   <Link 
-                    to={`/projects/${project.id}`}
+                    to={`/projects/${project.slug}`}
                     className="text-sm text-primary font-medium hover:underline"
                   >
                     View Details →

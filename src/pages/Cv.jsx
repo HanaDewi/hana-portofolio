@@ -5,7 +5,6 @@ import { Footer } from "@/components/Footer";
 
 export default function Cv() {
   const handleDownload = () => {
-    // Cara paling simple dan reliable
     const link = document.createElement('a');
     link.href = '/projects/cv/CV Hana Dewi Shoviyah.pdf';
     link.setAttribute('download', 'CV-Nama-Anda.pdf');
@@ -18,12 +17,8 @@ export default function Cv() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
-      {/* offset navbar */}
       <div className="pt-24">
         <div className="max-w-4xl mx-auto px-4 py-10">
-
-          {/* Tombol */}
           <div className="flex justify-center mb-10">
             <button
               onClick={handleDownload}
@@ -32,10 +27,7 @@ export default function Cv() {
               Download CV
             </button>
           </div>
-
-          {/* CV LIST */}
           <div className="flex flex-col space-y-12">
-            {/* CV 1 */}
             <div className="shadow-2xl rounded-xl overflow-hidden">
               <img
                 src="/projects/cv/cv1.jpg"
@@ -43,8 +35,6 @@ export default function Cv() {
                 className="w-full h-auto"
               />
             </div>
-
-            {/* CV 2 */}
             <div className="shadow-2xl rounded-xl overflow-hidden">
               <img
                 src="/projects/cv/cv2.jpg"
@@ -56,8 +46,6 @@ export default function Cv() {
 
         </div>
       </div>
-
-      {/* FOOTER */}
       <Footer />
     </div>
   );

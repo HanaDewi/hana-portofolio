@@ -2,41 +2,45 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { cn } from "@/lib/utils";
-
-const skills = [
-  // Frontend
-  { name: "HTML5", icon: "/skills/html5.png", category: "frontend" },
-  { name: "CSS3", icon: "/skills/CSS3.png", category: "frontend" },
-  { name: "JavaScript", icon: "/skills/javascript.png", category: "frontend" },
-  { name: "React", icon: "/skills/Reac.png", category: "frontend" },
-  { name: "Tailwind", icon: "/skills/Tailwind.png", category: "frontend" },
-
-  // Backend & Framework
-  { name: "MySQL", icon: "/skills/mysql.png", category: "backend" },
-  { name: "PHP", icon: "/skills/php.png", category: "backend" },
-  { name: "Laravel", icon: "/skills/laravel.png", category: "backend" },
-
-  // Tools & Design
-  { name: "GitHub", icon: "/skills/github.png", category: "tools" },
-  { name: "Figma", icon: "/skills/figma.png", category: "tools" },
-  { name: "VS Code", icon: "/skills/vscode.png", category: "tools" },
-  { name: "Adobe Illustrator", icon: "/skills/AdobeIllustrator.png", category: "tools" },
-  { name: "Canva", icon: "/skills/canva.png", category: "tools" },
-];
+import { supabase } from "@/lib/supabase"; 
 
 const categories = ["all", "frontend", "backend", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [skillsData, setSkillsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({ duration: 800, once: false });
+
+    const fetchSkills = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("skills") 
+          .select("*")
+          .eq("is_visible", true)
+          .order("id", { ascending: true }); 
+
+        if (error) {
+          console.error("Gagal mengambil data skills:", error);
+        } else {
+          setSkillsData(data);
+        }
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
   }, []);
 
   const filteredSkills =
     activeCategory === "all"
-      ? skills
-      : skills.filter((skill) => skill.category === activeCategory);
+      ? skillsData
+      : skillsData.filter((skill) => skill.category === activeCategory);
 
   return (
     <section id="skills" className="py-1 px-4 relative bg-secondary/30 scroll-mt-24">
@@ -66,24 +70,29 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Skill Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
-          {filteredSkills.map((skill, idx) => (
-            <div
-              key={idx}
-              className="bg-card p-6 rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-2 text-center"
-              data-aos="zoom-in"
-              data-aos-delay={idx * 80} 
-            >
-              <img
-                src={skill.icon}
-                alt={skill.name}
-                className="w-20 h-20 mx-auto mb-4 object-contain"
-              />
-              <h3 className="font-semibold text-lg">{skill.name}</h3>
-            </div>
-          ))}
-        </div>
+        {/* Loading Indicator*/}
+        {loading ? (
+          <div className="text-center text-primary animate-pulse">Loading skills...</div>
+        ) : (
+          /* Skill Cards */
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+            {filteredSkills.map((skill, idx) => (
+              <div
+                key={idx}
+                className="bg-card p-6 rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-2 text-center"
+                data-aos="zoom-in"
+                data-aos-delay={(idx % 4) * 80} 
+              >
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w-20 h-20 mx-auto mb-4 object-contain"
+                />
+                <h3 className="font-semibold text-lg">{skill.name}</h3>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
