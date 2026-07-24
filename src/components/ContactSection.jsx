@@ -100,7 +100,7 @@ export const ContactSection = () => {
                 </div>
                 <div className="flex flex-col text-left">
                   <h4 className="font-medium text-foreground">Location</h4>
-                  <span className="text-muted-foreground text-sm">Jawa Tengah, Indonesia</span>
+                  <span className="text-muted-foreground text-sm">Batang, Indonesia</span>
                 </div>
               </div>
             </div>
